@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+/* General Body Layout */
+body {
+   width: 90%;
+   min-width: 800px;
+   max-width: 1200px;
+   margin: 0 auto;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background-color: #c7c1c1;
+   color: #333;
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-areas: "header"
+                         "profile"
+                         "footer";
+}
+
+/* Header */
+header {
+   grid-area: header;
+   padding: 20px 0;
+   text-align: left;
+}
+
+header img {
+   width: 200px;
+   height: 200px;
+}
+
+/* Footer */
+footer {
+   grid-area: footer;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   padding: 20px;
+   background-color: #1f2937; /* Dark slate color */
+   color: #d1d5db; /* Light gray text */
+}
+
+footer p {
+   grid-column: 1 / -1;
+   text-align: center;
+   font-size: 14px;
+}
+
+/* Teacher Profile Layout */
+.profile-container {
+   grid-area: profile;
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+   padding: 24px;
+   background-color: #c9d4f7;
+   border-radius: 12px;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile Header */
+.profile-header {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+/* Profile Info */
+.profile-info h1 {
+   font-size: 28px;
+   font-weight: 600;
+   color: #1e3a8a; /* Dark blue */
+}
+
+.profile-info p {
+   margin: 4px 0;
+   font-size: 16px;
+   color: #555;
+}
+
+/* Book Button */
+.book-button {
+   margin-top: 12px;
+   padding: 10px 20px;
+   background-color: #2563eb; /* Blue */
+   color: white;
+   font-size: 16px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.book-button:hover {
+   background-color: #1d4ed8;
+}
+
+/* Video Section */
+.video-wrapper {
+   margin-top: 24px;
+}
+
+.video {
+   width: 100%;
+   height: 350px;
+   border-radius: 12px;
+   border: 1px solid #ddd;
+}
+
+/* Course Grid */
+.course-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 16px;
+   margin-top: 24px;
+}
