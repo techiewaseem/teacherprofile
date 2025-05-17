@@ -1,58 +1,101 @@
-import React from "react";
-import CourseCard from "./CourseCard";
-import "../TeacherProfile.css"; 
+import React, { useState } from "react";
 import teacherImage from "./teacher.png";
+import "../TeacherProfile.css";
 
 const teacher = {
   name: "Hamdan Bin Khalid",
-  subject: "Mathematics",
-  bio: "Experienced high school math teacher with 10+ years of experience.",
-  videoUrl: "https://www.youtube.com/embed/T5Qf0qSSJFI",
+  subject: "Arabic",
+  bio: "Experienced high school Arabic teacher with 10+ years of experience.",
   courses: [
-    { id: 1, title: "Algebra 101", description: "Intro to Algebra" },
-    { id: 2, title: "Calculus Basics", description: "Learn derivatives and integrals" },
-    { id: 3, title: "Geometry Mastery", description: "Understand shapes and angles" },
+    { id: 1, title: "Quran Tajweed", description: "Learn the rules of Quran recitation" },
+    { id: 2, title: "Basic Arabic Grammar", description: "Learn fundamental Arabic grammar rules" },
+    { id: 3, title: "Quran Interpretation", description: "Understand the meanings and tafsir of Quran verses" },
   ],
 };
 
 const TeacherProfile = () => {
-  return (
-    <div className="profile-container">
-      <header>
-      <img src={teacherImage} alt="Header Image" />
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
+  const handleBookClick = (course) => {
+    setSelectedCourse(course);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedCourse(null);
+  };
+
+  return (
+    <div className="teacher-profile">
+      {/* Header Image */}
+      <header className="teacher-header">
+        <img
+          src={teacherImage}
+          alt="Hamdan Bin Khalid"
+          className="teacher-image"
+        />
       </header>
 
-      <div className="profile-header">
-        <div className="profile-info">
-          <h1>{teacher.name}</h1>
-          <p>{teacher.subject}</p>
-          <p>{teacher.bio}</p>
-          <button className="book-button">Book a Session</button>
-        </div>
+      {/* Teacher Info */}
+      <section className="teacher-info">
+        <h1 className="teacher-name">{teacher.name}</h1>
+        <h3 className="teacher-subject">{teacher.subject}</h3>
+        <p className="teacher-bio">{teacher.bio}</p>
+      </section>
 
-        <div className="video-wrapper">
-          <iframe
-            className="video"
-            src={teacher.videoUrl}
-            title="Video intro"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
+      {/* Video intro */}
+      <section className="teacher-video">
+        <h2 className="video-title">Introduction Video</h2>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/XC62pWvw4b0"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </section>
 
-      <div>
-        <h2>Courses</h2>
+      {/* Courses */}
+      <section className="teacher-courses">
+        <h2 className="courses-title">Courses</h2>
         <div className="course-grid">
           {teacher.courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+            <div key={course.id} className="course-card">
+              <h3 className="course-title">{course.title}</h3>
+              <p className="course-description">{course.description}</p>
+              <button className="book-button" onClick={() => handleBookClick(course)}>
+                Book Session Now
+              </button>
+            </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      <footer>
-        <p>&copy; 2025 Teacher Profile. All rights reserved.</p>
+      {/* Modal Popup */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Book: {selectedCourse?.title}</h3>
+            <p>
+              Join the Zoom session using this link: <br />
+              <a href="https://zoom.us/j/1234567890" target="_blank" rel="noopener noreferrer">
+                https://zoom.us/j/1234567890
+              </a>
+            </p>
+            <button className="close-modal" onClick={handleCloseModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="teacher-footer">
+        © 2025 Teacher Profile. All rights reserved.
       </footer>
     </div>
   );
