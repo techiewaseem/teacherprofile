@@ -1,114 +1,222 @@
-@charset "utf-8";
+/* teacherprofile.css */
 
-/* General Body Layout */
 body {
-   width: 90%;
-   min-width: 800px;
-   max-width: 1200px;
-   margin: 0 auto;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   background-color: #c7c1c1;
-   color: #333;
-   display: grid;
-   grid-template-columns: 1fr;
-   grid-template-areas: "header"
-                         "profile"
-                         "footer";
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
 }
 
-/* Header */
-header {
-   grid-area: header;
-   padding: 20px 0;
-   text-align: left;
+/* Container */
+.teacher-profile {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-header img {
-   width: 200px;
-   height: 200px;
+/* Header Image */
+.teacher-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Footer */
-footer {
-   grid-area: footer;
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   padding: 20px;
-   background-color: #1f2937; /* Dark slate color */
-   color: #d1d5db; /* Light gray text */
+.teacher-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-footer p {
-   grid-column: 1 / -1;
-   text-align: center;
-   font-size: 14px;
+.teacher-image:hover {
+  transform: scale(1.05);
 }
 
-/* Teacher Profile Layout */
-.profile-container {
-   grid-area: profile;
-   display: flex;
-   flex-direction: column;
-   gap: 24px;
-   padding: 24px;
-   background-color: #c9d4f7;
-   border-radius: 12px;
-   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+/* Info Section */
+.teacher-info {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-/* Profile Header */
-.profile-header {
-   display: flex;
-   flex-direction: column;
-   gap: 16px;
+.teacher-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 10px;
 }
 
-/* Profile Info */
-.profile-info h1 {
-   font-size: 28px;
-   font-weight: 600;
-   color: #1e3a8a; /* Dark blue */
+.teacher-subject {
+  font-size: 1.3rem;
+  color: #4b5563;
+  margin-bottom: 12px;
 }
 
-.profile-info p {
-   margin: 4px 0;
-   font-size: 16px;
-   color: #555;
+.teacher-bio {
+  font-size: 1.1rem;
+  color: #374151;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Courses Section */
+.teacher-courses {
+  margin-top: 30px;
+}
+
+.courses-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #1e3a8a;
+  position: relative;
+}
+
+.courses-title::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background-color: #2563eb;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.course-card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid #2563eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #1d4ed8;
+  background-color: #f0f4ff;
+}
+
+.course-title {
+  font-size: 1.25rem;
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+.course-description {
+  font-size: 1rem;
+  color: #374151;
 }
 
 /* Book Button */
 .book-button {
-   margin-top: 12px;
-   padding: 10px 20px;
-   background-color: #2563eb; /* Blue */
-   color: white;
-   font-size: 16px;
-   border: none;
-   border-radius: 6px;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
+  margin-top: 15px;
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: start;
 }
 
 .book-button:hover {
-   background-color: #1d4ed8;
+  background-color: #1d4ed8;
 }
 
-/* Video Section */
-.video-wrapper {
-   margin-top: 24px;
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 41, 55, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.video {
-   width: 100%;
-   height: 350px;
-   border-radius: 12px;
-   border: 1px solid #ddd;
+.modal-content {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-/* Course Grid */
-.course-grid {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   gap: 16px;
-   margin-top: 24px;
+.modal-content h3 {
+  margin-bottom: 15px;
+  color: #1e3a8a;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+.modal-content a {
+  color: #2563eb;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.close-modal {
+  background-color: #e11d48;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  background-color: #be123c;
+}
+
+/* Footer */
+.teacher-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.teacher-video {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 30px 0;
+}
+
+.teacher-video .video-title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #133184;
+}
+
+.teacher-video iframe {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
